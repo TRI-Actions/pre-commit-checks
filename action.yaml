@@ -24,7 +24,7 @@ runs:
       curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.19.0/terraform-docs-v0.19.0-$(uname)-amd64.tar.gz
       tar -xzf terraform-docs.tar.gz
       chmod +x terraform-docs
-      mv terraform-docs $PATH/terraform-docs
+      mv terraform-docs /home/runner/.local/bin/terraform-docs
       echo $PATH
     shell: bash
 
@@ -39,8 +39,17 @@ runs:
     with:
       script: |
         const fs = require('fs');
-        const fileContent = fs.readFileSync('pre-commit.out', 'utf8');
-
+        try {
+          const fileContent = fs.readFileSync('pre-commit.out', 'utf8');
+        }
+        catch (error) {
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: "There was an error reading the pre-commit file, please check actions logs"
+          });
+        }
         github.rest.issues.createComment({
           issue_number: context.issue.number,
           owner: context.repo.owner,
