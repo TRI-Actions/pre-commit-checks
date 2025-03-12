@@ -18,11 +18,21 @@ runs:
     uses: TRI-IE/setup-terraform@v0.0.1
     with:
       terraform_wrapper: true
-
-
-  - run: pre-commit run --color=never --all-files > pre-commit.out
+  
+  - name: Install terraform-docs
+    run: |
+      curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.19.0/terraform-docs-v0.19.0-$(uname)-amd64.tar.gz
+      tar -xzf terraform-docs.tar.gz
+      chmod +x terraform-docs
+      mv terraform-docs $PATH/terraform-docs
+      echo $PATH
     shell: bash
-    
+
+
+  - name: Execute pre-commit
+    run: pre-commit run --color=never --all-files > pre-commit.out
+    shell: bash
+
   - name: check pre-commit checks
     if: always()
     uses: actions/github-script@v7
