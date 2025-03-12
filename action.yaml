@@ -21,7 +21,7 @@ runs:
     with:
       script: |
         const fs = require('fs');
-        const fileContent = fs.readFileSync(pre-commit.out, 'utf8');
+        const fileContent = fs.readFileSync('pre-commit.out', 'utf8');
         
         github.rest.issues.createComment({
           issue_number: context.issue.number,
