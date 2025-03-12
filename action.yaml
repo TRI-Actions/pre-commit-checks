@@ -12,7 +12,7 @@ runs:
     with:
       path: ~/.cache/pre-commit
       key: pre-commit-3|${{ env.pythonLocation }}|${{ hashFiles('.pre-commit-config.yaml') }}
-  - run: pre-commit run --color=never --all-files > pre-commit.out
+  - run: pre-commit run --color=always --all-files > pre-commit.out
     shell: bash
 
   - name: check pre-commit checks
