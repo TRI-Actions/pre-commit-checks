@@ -39,8 +39,9 @@ runs:
     with:
       script: |
         const fs = require('fs');
+        let fileContent = "";
         try {
-          const fileContent = fs.readFileSync('pre-commit.out', 'utf8');
+          fileContent = fs.readFileSync('pre-commit.out', 'utf8');
         }
         catch (error) {
           github.rest.issues.createComment({
