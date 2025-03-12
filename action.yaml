@@ -20,6 +20,10 @@ runs:
     uses: TRI-IE/setup-terraform@v0.0.1
     with:
       terraform_wrapper: true
+  - name: init
+    run: terraform init
+    with:
+      working-directory: terraform
 
   - name: check pre-commit checks
     if: always()
