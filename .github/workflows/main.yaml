@@ -39,7 +39,7 @@ jobs:
             })
 
       - name: Basic Linting
-        uses: TRI-IE/pre-commit-checks@main
+        uses: TRI-IE/pre-commit-checks@test
         
 
 
