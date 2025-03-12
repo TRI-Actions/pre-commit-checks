@@ -22,8 +22,8 @@ runs:
       terraform_wrapper: true
   - name: init
     run: terraform init
-    with:
-      working-directory: terraform
+    working-directory: terraform
+    shell: bash
 
   - name: check pre-commit checks
     if: always()
