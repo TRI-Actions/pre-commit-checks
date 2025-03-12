@@ -1,7 +1,7 @@
 name: main_update
 run-name: >-
-  ${{ github.event.issue.number && format('web_app_infra_update | PR-{0}', github.event.issue.number)
-  || 'web-app-infra Branch Update' }}
+  ${{ github.event.issue.number && format('pre_commit | PR-{0}', github.event.issue.number)
+  || 'pre-commit Branch Update' }}
 
 permissions: read-all
 
@@ -27,16 +27,5 @@ jobs:
           ref: ${{ github.event.issue.pull_request && format('refs/pull/{0}/head', github.event.issue.number) || '' }}
           fetch-depth: 0
 
-      - name: Alert User to tests
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: "If you would like to test your changes, comment `test` on your branch. Pipeline will pull the latest from branch `test`"
-            })
-
       - name: Basic Linting
-        uses: TRI-IE/pre-commit-checks@test
+        uses: TRI-IE/pre-commit-checks@main
