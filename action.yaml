@@ -1,23 +1,12 @@
 name: pre-commit
 description: run pre-commit
-inputs:
-  using-terraform:
-    description: 'Whether or not Terraform is being used'
-    default: False
-
 
 runs:
   using: composite
   steps:
+  - name: Install Pre-Commit
   - run: python -m pip install pre-commit
     shell: bash
-  - run: python -m pip freeze --local
-    shell: bash
-
-  - name: Setup Terraform
-    uses: TRI-IE/setup-terraform@v0.0.1
-    with:
-      terraform_wrapper: true
   
   - name: Install terraform-docs
     run: |
@@ -25,15 +14,13 @@ runs:
       tar -xzf terraform-docs.tar.gz
       chmod +x terraform-docs
       mv terraform-docs /home/runner/.local/bin/terraform-docs
-      echo $PATH
     shell: bash
 
-
-  - name: Execute pre-commit
+  - name: Execute pre-commit Checks
     run: pre-commit run --color=never --all-files > pre-commit.out
     shell: bash
 
-  - name: check pre-commit checks
+  - name: Output pre-commit checks
     if: always()
     uses: actions/github-script@v7
     with:
