@@ -13,7 +13,7 @@ runs:
       curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.19.0/terraform-docs-v0.19.0-$(uname)-amd64.tar.gz
       tar -xzf terraform-docs.tar.gz
       chmod +x terraform-docs
-      mv terraform-docs ~/.local/bin/terraform-docs
+      mv terraform-docs $HOME/.local/bin/terraform-docs
     shell: bash
 
   - name: Execute pre-commit Checks
