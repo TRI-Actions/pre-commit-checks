@@ -1,4 +1,4 @@
-# pre-commit-checks
+e# pre-commit-checks
 This is a simple repo that outputs pre-commit checks
 
 ## Prerequisites
@@ -9,7 +9,7 @@ This is a simple repo that outputs pre-commit checks
   jobs:
     pipeline:
       runs-on: ubuntu-latest
-      name: ${{ github.event.issue.pull_request && 'deploy' || 'plan' }}
+      name: pre-commit
       permissions: write-all
    
       steps:
