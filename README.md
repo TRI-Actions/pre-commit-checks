@@ -5,12 +5,13 @@ This is a simple repo that outputs pre-commit checks
   `.pre-commit-config.yaml` must be created and customized within the repo executing this workflow
 
 ## Deploying within Github Actions Workflow
+
   jobs:
-  pipeline:
-    runs-on: ubuntu-latest
-    name: ${{ github.event.issue.pull_request && 'deploy' || 'plan' }}
-    permissions: write-all
- 
-    steps:
-      - name: run composite module
-        uses: TRI-Actions/pre-commit-checks@main
+    pipeline:
+      runs-on: ubuntu-latest
+      name: ${{ github.event.issue.pull_request && 'deploy' || 'plan' }}
+      permissions: write-all
+   
+      steps:
+        - name: run composite module
+          uses: TRI-Actions/pre-commit-checks@main
