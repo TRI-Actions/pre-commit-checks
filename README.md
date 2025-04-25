@@ -1,4 +1,4 @@
-e# pre-commit-checks
+# pre-commit-checks
 This is a simple repo that outputs pre-commit checks
 
 ## Prerequisites
