@@ -1,5 +1,5 @@
 # pre-commit-checks
-This is a simple repo that outputs pre-commit checks
+This is a simple Action that outputs pre-commit checks
 
 ## Prerequisites
   `.pre-commit-config.yaml` must be created and customized within the repo executing this workflow
