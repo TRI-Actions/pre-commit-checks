@@ -20,7 +20,7 @@ runs:
 
   - name: Execute pre-commit Checks
     run: |
-      pre-commit run --color=never --all-files > pre-commit.out
+      echo "$(pre-commit run --color=never --all-files)" | tee pre-commit.out
     shell: bash
 
   - name: Output pre-commit checks
