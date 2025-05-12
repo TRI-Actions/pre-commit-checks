@@ -10,15 +10,17 @@ runs:
 
   - name: Install terraform-docs
     run: |
+      mkdir -p .bin
       curl -sSLo ./terraform-docs.tar.gz https://terraform-docs.io/dl/v0.19.0/terraform-docs-v0.19.0-$(uname)-amd64.tar.gz
       tar -xzf terraform-docs.tar.gz
       chmod +x terraform-docs
-      mv terraform-docs /usr/local/bin/
+      mv terraform-docs .bin/
+      echo "$PWD/.bin" >> $GITHUB_PATH
     shell: bash
 
   - name: Execute pre-commit Checks
     run: |
-      pre-commit run --color=never --all-files > pre-commit.out
+      pre-commit run --color=never --all-files | tee pre-commit.out
     shell: bash
 
   - name: Output pre-commit checks
